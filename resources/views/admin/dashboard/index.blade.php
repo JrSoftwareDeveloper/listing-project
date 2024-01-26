@@ -1,5 +1,4 @@
-@extends('layouts.master')
-@section('contents')
+<x-admin-layout>
     <section class="section">
         <div class="section-header">
             <h1>Dashboard</h1>
@@ -67,4 +66,5 @@
             </div>
         </div>
     </section>
-@endsection
+
+</x-admin-layout>
