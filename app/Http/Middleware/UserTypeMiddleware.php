@@ -16,7 +16,7 @@ class UserTypeMiddleware
      */
     public function handle(Request $request, Closure $next, string $userType): Response
     {
-        if ($request->user()->user_type !== $userType)
+        if ($request->user() && $request->user()->user_type !== $userType)
             return redirect()->route('dashboard');
 
         return $next($request);

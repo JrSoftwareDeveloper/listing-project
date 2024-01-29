@@ -16,6 +16,7 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/css/components.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 </head>
 
@@ -52,6 +53,26 @@
 
     <!-- Template JS File -->
     <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
+    <script src="{{ asset('admin/assets/modules/upload-preview/assets/js/jquery.uploadPreview.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
+    @if (isset($scripts) && count($scripts) > 0)
+        @foreach ($scripts as $script)
+            <script src="{{ asset($script) }}"></script>
+        @endforeach
+    @endif
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <script>
+                toastr.error('{{ $error }}', 'Error', {
+                    closeButton: true,
+                    progressBar: true,
+                });
+            </script>
+        @endforeach
+
+    @endif
 </body>
 
 </html>
