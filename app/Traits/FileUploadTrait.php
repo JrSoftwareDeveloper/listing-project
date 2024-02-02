@@ -14,7 +14,7 @@ trait FileUploadTrait
             $file = $request->file($inputName);
             $fileName = Str::random(40) . '.' . $file->getClientOriginalExtension();
             $file->move(public_path($path), $fileName);
-            if ($oldPath && File::exists(public_path($oldPath))) {
+            if ($oldPath && !str_contains($oldPath, 'default/') && File::exists(public_path($oldPath))) {
                 File::delete(public_path($oldPath));
             }
             return $path . '/' . $fileName;

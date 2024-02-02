@@ -142,6 +142,42 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Update Password</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ route('admin.profile-password.update') }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="wa_link">Password</label>
+                                            <input type="password" class="form-control" name="password" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="insta_link">Confirm Password</label>
+                                            <input type="password" class="form-control"
+                                                name="password_confirmation" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 px-0">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Update Password</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </x-admin-layout>

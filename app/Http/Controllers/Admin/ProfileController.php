@@ -39,6 +39,21 @@ class ProfileController extends Controller
         $user->wa_link = $request->wa_link;
         $user->insta_link = $request->insta_link;
         $user->save();
-        return redirect()->route('admin.profile')->with('success', 'Profile updated successfully');
+
+        toastr()->success('Profile updated successfully');
+        return redirect()->back();
+    }
+
+    public function passwordUpdate(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|confirmed',
+        ]);
+
+        $user = Auth::user();
+        $user->password = bcrypt($request->password);
+        $user->save();
+        toastr()->success('Password updated successfully');
+        return redirect()->back();
     }
 }
