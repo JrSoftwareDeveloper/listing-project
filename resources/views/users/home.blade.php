@@ -11,7 +11,5 @@
     <x-users-sections.testimonials />
     <x-users-sections.blogs-part />
     <x-footer />
-    <div class="scroll_btn">
-        <i class="fas fa-chevron-up"></i>
-    </div>
+    <x-users-sections.scroll-top />
 </x-layout>

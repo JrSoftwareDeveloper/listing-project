@@ -1,4 +1,4 @@
-<x-guest-layout>
+{{-- <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -44,4 +44,71 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-guest-layout> --}}
+<x-layout>
+    <x-navbar />
+    <x-users-sections.breadcrumb :title="'Login'" />
+    <section class="wsus__login_page">
+        <div class="container">
+            <div class="row">
+                <div class="col-xxl-5 col-xl-6 col-md-9 col-lg-7 m-auto">
+                    <div class="wsus__login_area">
+                        <h2>Welcome back!</h2>
+                        <p>sign in to continue</p>
+                        <x-auth-session-status class="mb-4" :status="session('status')" />
+
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="wsus__login_imput">
+                                        <label>email</label>
+                                        <input name="email" type="email" placeholder="Email" required>
+                                        @if ($errors->has('email'))
+                                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="wsus__login_imput">
+                                        <label>password</label>
+                                        <input name="password" type="password" placeholder="Password" required>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="wsus__login_imput wsus__login_check_area">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault" name="remember">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Remeber Me
+                                            </label>
+                                        </div>
+
+                                        <a href="{{ route('password.request') }}">Forget Password ?</a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="wsus__login_imput">
+                                        <button type="submit">login</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <p class="or"><span>or</span></p>
+                        <ul class="d-flex">
+                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                        </ul>
+                        <p class="create_account">Dont’t have an account ? <a href="{{ route('register') }}">Create
+                                Account</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <x-footer />
+    <x-users-sections.scroll-top />
+</x-layout>

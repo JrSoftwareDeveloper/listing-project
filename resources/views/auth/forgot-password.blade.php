@@ -25,59 +25,46 @@
 </x-guest-layout> --}}
 
 
-<x-auth-layout>
-    <section class="section">
-        <div class="container mt-5">
+<x-layout>
+    <x-navbar />
+    <x-users-sections.breadcrumb :title="'Forgot Password'" />
+    {{-- <x-users-sections.breadcrumb :title="'Forgot Password'" :breadcrumbArray="['home' => '/', 'dashboard' => '/dashboard', 'profile' => '/profile']" /> --}}
+    <section class="wsus__login_page">
+        <div class="container">
             <div class="row">
-                <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-                    <div class="login-brand">
-                        <img src="assets/img/stisla-fill.svg" alt="logo" width="100"
-                            class="shadow-light rounded-circle">
-                    </div>
+                <div class="col-xxl-5 col-xl-6 col-md-9 col-lg-7 m-auto">
+                    <div class="wsus__login_area">
+                        <p>Forgot your password? No problem. Just let us know your email address and we will email you a
+                            password reset link that will allow you to choose a new one.</p>
+                        @if (session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                        @endif
 
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h4>Fogot Password</h4>
-                        </div>
-
-                        <div class="card-body">
-                            <x-auth-session-status class="mb-4" :status="session('status')" />
-                            @if (session('status'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
-                            <form method="POST" action="{{ route('password.email') }}" class="needs-validation"
-                                novalidate="">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input id="email" type="email" class="form-control" name="email"
-                                        value="{{ old('email') }}" tabindex="1" required autofocus>
-                                    <div class="invalid-feedback">
-                                        Please fill in your email
+                        <form method="POST" action="{{ route('password.email') }}">
+                            @csrf
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="wsus__login_imput">
+                                        <label>email</label>
+                                        <input type="email" placeholder="Email" name="email"
+                                            value="{{ old('email') }}" required>
                                     </div>
-                                    @if ($errors->has('email'))
-                                        <span class="text-danger">{{ $errors->first('email') }}</span>
-                                    @endif
                                 </div>
 
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                        Email Password Reset Link
-                                    </button>
+                                <div class="col-xl-12">
+                                    <div class="wsus__login_imput">
+                                        <button type="submit">Email Password Reset Link</button>
+                                    </div>
                                 </div>
-                            </form>
+                            </div>
+                        </form>
 
-
-                        </div>
-                    </div>
-                    <div class="simple-footer">
-                        Copyright &copy; ARO {{ date('Y') }}
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-</x-auth-layout>
+</x-layout>
