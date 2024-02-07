@@ -21,9 +21,10 @@
 </head>
 
 <body>
+    {{-- {{ dd($active) }} --}}
     <div id="app">
         <div class="main-wrapper main-wrapper-1">
-            <x-admin-nav-sidebar />
+            <x-admin-nav-sidebar :activeName="$active" />
             <!-- Main Content -->
             <div class="main-content">
                 {{ $slot }}

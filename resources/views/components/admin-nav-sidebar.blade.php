@@ -174,15 +174,16 @@
             <a href="index.html">St</a>
         </div>
         <ul class="sidebar-menu">
-
             <li class="menu-header">Starter</li>
-            <li><a class="nav-link" href="{{ route('admin.dashboard') }}"><i class="far fa-square"></i>
+            <li @if ($activeName == 'dashboard') class="active" @endif><a class="nav-link"
+                    href="{{ route('admin.dashboard') }}"><i class="far fa-square"></i>
                     <span>Dashboard</span></a></li>
-            <li class="dropdown">
+            <li @if ($activeName == 'hero' || $activeName == 'num') class="dropdown active" @else class="dropdown" @endif>
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i> <span>Sections</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="{{ route('admin.hero') }}">Hero</a></li>
+                    <li @if ($activeName == 'hero') class="active" @endif><a class="nav-link"
+                            href="{{ route('admin.hero') }}">Hero</a></li>
                 </ul>
             </li>
             <li class="dropdown">

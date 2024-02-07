@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-admin-layout :active="'dashboard'">
     <section class="section">
         <div class="section-header">
             <h1>Dashboard</h1>

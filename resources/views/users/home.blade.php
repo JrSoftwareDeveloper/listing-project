@@ -1,6 +1,6 @@
 <x-layout>
     <x-navbar />
-    <x-users-sections.banner />
+    <x-users-sections.banner :hero="$hero" />
     <x-users-sections.category-slider />
     <x-users-sections.features-part />
     <x-users-sections.counter-part />

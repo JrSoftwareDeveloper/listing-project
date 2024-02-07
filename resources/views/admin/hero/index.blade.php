@@ -1,7 +1,7 @@
 @php
     $scripts = ['admin/assets/js/page/hero-page.js'];
 @endphp
-<x-admin-layout :scripts="$scripts">
+<x-admin-layout :scripts="$scripts" :active="'hero'">
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
