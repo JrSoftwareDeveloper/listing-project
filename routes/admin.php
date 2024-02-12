@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\HeroController;
 
 Route::prefix('admin')->as('admin.')->group(function () {
     Route::get('/login', [AdminAuthController::class, 'login'])->name('login');
@@ -20,5 +21,8 @@ Route::prefix('admin')->as('admin.')->group(function () {
         // Hero Routes
         Route::get('/hero', [HeroController::class, 'index'])->name('hero');
         Route::put('/hero', [HeroController::class, 'update'])->name('hero.update');
+
+        // Category Routes
+        Route::resource('categories', CategoryController::class);
     });
 });
