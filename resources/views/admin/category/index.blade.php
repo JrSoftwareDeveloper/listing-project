@@ -30,7 +30,6 @@
                 <div class="breadcrumb-item">Category</div>
             </div>
         </div>
-
         <div class="section-body">
             <div class="row">
                 <div class="col-12">
@@ -38,7 +37,8 @@
                         <div class="card-header">
                             <h4>All Categories</h4>
                             <div class="card-header-action">
-                                <a href="" class="btn btn-primary"><i class="fas fa-plus"></i> &nbsp;Create</a>
+                                <a href="{{ route('admin.categories.create') }}" class="btn btn-primary"><i
+                                        class="fas fa-plus"></i> &nbsp;Create</a>
                             </div>
                         </div>
                         <div class="card-body">
