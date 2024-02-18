@@ -21,4 +21,11 @@ trait FileUploadTrait
         }
         return $oldPath;
     }
+
+    function deleteImage($path)
+    {
+        if ($path && !str_contains($path, 'default/') && File::exists(public_path($path))) {
+            File::delete(public_path($path));
+        }
+    }
 }

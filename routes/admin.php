@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\LocationController;
 
 Route::prefix('admin')->as('admin.')->group(function () {
     Route::get('/login', [AdminAuthController::class, 'login'])->name('login');
@@ -24,5 +25,6 @@ Route::prefix('admin')->as('admin.')->group(function () {
 
         // Category Routes
         Route::resource('categories', CategoryController::class);
+        Route::resource('locations', LocationController::class);
     });
 });

@@ -59,6 +59,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 
     @if (isset($scripts) && count($scripts) > 0)
@@ -89,6 +91,46 @@
             label_selected: "Change File", // Default: Change File
             no_label: false, // Default: false
             success_callback: null // Default: null
+        });
+
+        $('body').on('click', '.delete-item', function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $.ajax({
+                        method: "DELETE",
+                        url: $(this).attr('href'),
+                        data: {
+                            _token: "{{ csrf_token() }}"
+                        },
+                        success: function(response) {
+                            if (response.status === 'success') {
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: response.message,
+                                    icon: "success"
+                                });
+                                window.location.reload();
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(error);
+                        }
+
+
+                    })
+
+                }
+            });
         });
     </script>
 </body>

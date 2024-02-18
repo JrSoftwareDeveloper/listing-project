@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Category;
+use App\Models\Location;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class CategoryDataTable extends DataTable
+class LocationDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -23,36 +23,30 @@ class CategoryDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                return '<a href="' . route('admin.categories.edit', $query->id) . '" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a><a href="' . route('admin.categories.destroy', $query->id) . '" class="ml-2 btn btn-danger btn-sm delete-item"><i class="fas fa-trash"></i></a>';
+                return '<a href="' . route('admin.locations.edit', $query->id) . '" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a><a href="' . route('admin.locations.destroy', $query->id) . '" class="ml-2 btn btn-danger btn-sm delete-item"><i class="fas fa-trash"></i></a>';
             })
-            ->addColumn('icon', function (Category $category) {
-                return '<img src="' . asset($category->image_icon) . '" width="50" height="50">';
-            })
-            ->addColumn('background', function (Category $category) {
-                return '<img src="' . asset($category->background_image) . '" width="50" height="50">';
-            })
-            ->addColumn('show_at_home', function (Category $category) {
-                if ($category->show_at_home === 1) {
+            ->addColumn('show_at_home', function (Location $location) {
+                if ($location->show_at_home === 1) {
                     return '<span class="badge badge-primary">Yes</span>';
                 } else {
                     return '<span class="badge badge-danger">No</span>';
                 }
             })
-            ->addColumn('status', function (Category $category) {
-                if ($category->active === 1) {
+            ->addColumn('active', function (Location $location) {
+                if ($location->active === 1) {
                     return '<span class="badge badge-primary">Active</span>';
                 } else {
                     return '<span class="badge badge-danger">Inactive</span>';
                 }
             })
-            ->rawColumns(['action', 'icon', 'background', 'show_at_home', 'status'])
+            ->rawColumns(['active', 'show_at_home', 'action'])
             ->setRowId('id');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(Category $model): QueryBuilder
+    public function query(Location $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -63,7 +57,7 @@ class CategoryDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('category-table')
+            ->setTableId('location-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
@@ -85,12 +79,10 @@ class CategoryDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('id')->width(100),
-            Column::make('icon')->width(200),
-            Column::make('background')->width(200),
+            Column::make('id'),
             Column::make('name'),
             Column::make('show_at_home'),
-            Column::make('status'),
+            Column::make('active'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
@@ -104,6 +96,6 @@ class CategoryDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Category_' . date('YmdHis');
+        return 'Location_' . date('YmdHis');
     }
 }
