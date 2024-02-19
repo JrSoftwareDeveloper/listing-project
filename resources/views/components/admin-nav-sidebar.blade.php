@@ -186,7 +186,7 @@
                             href="{{ route('admin.hero') }}">Hero</a></li>
                 </ul>
             </li>
-            <li @if ($activeName == 'category' || $activeName == 'location' || $activeName == 'amenity') class="dropdown active" @else class="dropdown" @endif>
+            <li @if ($activeName == 'category' || $activeName == 'location' || $activeName == 'amenity' || $activeName == 'listing') class="dropdown active" @else class="dropdown" @endif>
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-columns"></i> <span>Listings</span></a>
                 <ul class="dropdown-menu">
@@ -196,6 +196,8 @@
                             href="{{ route('admin.locations.index') }}">Location</a></li>
                     <li @if ($activeName == 'amenity') class="active" @endif><a class="nav-link"
                             href="{{ route('admin.amenity.index') }}">Amenities</a></li>
+                    <li @if ($activeName == 'listing') class="active" @endif><a class="nav-link"
+                            href="{{ route('admin.listing.index') }}">Listing</a></li>
                 </ul>
             </li>
             <li class="dropdown">
